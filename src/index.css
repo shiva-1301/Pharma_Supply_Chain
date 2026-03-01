@@ -1,0 +1,877 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ================================================================
+   PharmaBatchTracker — Institutional / Regulatory-Grade Design
+   Color Palette: Deep Navy + Muted Teal + Neutral Gray
+   ================================================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* — Core palette — */
+  --navy: #1b2a4a;
+  --navy-dark: #0f1b33;
+  --navy-light: #263c66;
+  --teal: #2a7f8f;
+  --teal-dark: #1f6572;
+  --teal-muted: #e8f4f6;
+  --blue-clinical: #3b82c4;
+
+  /* — Neutrals — */
+  --bg: #f4f6f8;
+  --surface: #ffffff;
+  --border: #dce1e8;
+  --border-light: #ebeef3;
+  --text-primary: #1b2a4a;
+  --text-secondary: #5a6577;
+  --text-muted: #8a94a6;
+
+  /* — Semantic — */
+  --success: #1a7a42;
+  --success-bg: #eaf7ef;
+  --success-border: #b7e4c7;
+  --danger: #c5303e;
+  --danger-bg: #fdf0f1;
+  --danger-border: #f5c6cb;
+  --info: #2563a8;
+  --info-bg: #edf3fb;
+  --info-border: #b9d2f0;
+  --muted: #6b7280;
+  --muted-bg: #f3f4f6;
+  --muted-border: #d1d5db;
+
+  /* — Spacing — */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 20px;
+  --space-xl: 28px;
+
+  /* — Radius — */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg);
+  color: var(--text-primary);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ================================================================
+   NAVIGATION — Compact, institutional top bar
+   ================================================================ */
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  height: 52px;
+  background: var(--navy);
+  color: #fff;
+  border-bottom: 2px solid var(--teal);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav__brand {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.nav__brand h1 {
+  color: #fff;
+  font-size: 0.95em;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.nav__brand .nav__divider {
+  width: 1px;
+  height: 18px;
+  background: rgba(255,255,255,0.25);
+  align-self: center;
+}
+
+.nav__subtitle {
+  font-size: 0.72em;
+  color: rgba(255,255,255,0.5);
+  font-weight: 400;
+}
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 1px;
+  background: rgba(255,255,255,0.06);
+  border-radius: var(--radius-sm);
+  padding: 2px;
+}
+
+.nav__links li a {
+  text-decoration: none;
+  color: rgba(255,255,255,0.6);
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.8em;
+  font-weight: 500;
+  transition: color 150ms ease, background 150ms ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav__links li a:hover {
+  color: #fff;
+  background: rgba(255,255,255,0.08);
+}
+
+.nav__links li a.nav__link--active {
+  color: #fff;
+  background: var(--teal);
+}
+
+.nav__icon {
+  font-size: 0.95em;
+  line-height: 1;
+}
+
+.nav__connect {
+  padding: 6px 14px;
+  background-color: var(--teal);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: "Inter", sans-serif;
+  font-size: 0.78em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 150ms ease;
+}
+
+.nav__connect:hover {
+  background-color: var(--teal-dark);
+}
+
+.nav__connect--connected {
+  background: rgba(42,127,143,0.15);
+  border: 1px solid rgba(42,127,143,0.4);
+  color: var(--teal-muted);
+  font-family: "SF Mono", "Cascadia Code", "Courier New", monospace;
+  font-size: 0.75em;
+  font-weight: 500;
+}
+
+/* ================================================================
+   SYSTEM HEADER — Compact bar replaces hero
+   ================================================================ */
+
+.system-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.system-header__left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.system-header__title {
+  font-size: 0.82em;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.system-header__sub {
+  font-size: 0.72em;
+  color: var(--text-muted);
+}
+
+.system-header__right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.system-header__indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72em;
+  color: var(--text-secondary);
+}
+
+.system-header__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--success);
+  display: inline-block;
+}
+
+.system-header__dot--offline {
+  background: var(--danger);
+}
+
+.system-header__wallet {
+  font-family: "SF Mono", "Cascadia Code", "Courier New", monospace;
+  font-size: 0.72em;
+  color: var(--text-muted);
+  background: var(--bg);
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+
+/* ================================================================
+   MAIN CONTENT
+   ================================================================ */
+
+.main-content {
+  max-width: 880px;
+  margin: 20px auto;
+  padding: 0 24px;
+}
+
+/* ================================================================
+   PANELS — Clean institutional cards
+   ================================================================ */
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 0;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 2px rgba(27,42,74,0.04);
+  overflow: hidden;
+}
+
+.panel__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 20px 12px;
+  border-bottom: 1px solid var(--border-light);
+  background: var(--bg);
+}
+
+.panel__header-icon {
+  font-size: 1.1em;
+  line-height: 1;
+  color: var(--teal);
+}
+
+.panel__header h2 {
+  font-size: 0.88em;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.panel__body {
+  padding: 16px 20px 18px;
+}
+
+.panel__description {
+  font-size: 0.78em;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+  line-height: 1.55;
+}
+
+.panel--danger .panel__header {
+  border-left: 3px solid var(--danger);
+}
+
+.panel--danger .panel__header-icon {
+  color: var(--danger);
+}
+
+/* ================================================================
+   FORMS — Structured, two-column for larger screens
+   ================================================================ */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.form__group {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.form__group--full {
+  grid-column: 1 / -1;
+}
+
+.form__group label {
+  font-size: 0.72em;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.form__group label .required {
+  color: var(--danger);
+  margin-left: 2px;
+}
+
+.form__group input,
+.form__group textarea,
+.form__group select {
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: "Inter", sans-serif;
+  font-size: 0.85em;
+  color: var(--text-primary);
+  background: var(--surface);
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.form__group input:focus,
+.form__group textarea:focus,
+.form__group select:focus {
+  outline: none;
+  border-color: var(--teal);
+  box-shadow: 0 0 0 2px rgba(42,127,143,0.12);
+}
+
+.form__group input::placeholder {
+  color: var(--text-muted);
+  font-size: 0.92em;
+}
+
+.form__divider {
+  height: 1px;
+  background: var(--border-light);
+  margin: 4px 0;
+}
+
+/* ================================================================
+   BUTTONS — Restrained, institutional
+   ================================================================ */
+
+.btn {
+  padding: 8px 18px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: "Inter", sans-serif;
+  font-size: 0.82em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 150ms ease, box-shadow 150ms ease;
+  margin-top: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn--primary {
+  background: var(--teal);
+  color: #fff;
+}
+
+.btn--primary:hover:not(:disabled) {
+  background: var(--teal-dark);
+}
+
+.btn--secondary {
+  background: var(--navy);
+  color: #fff;
+}
+
+.btn--secondary:hover:not(:disabled) {
+  background: var(--navy-dark);
+}
+
+.btn--danger {
+  background: var(--danger);
+  color: #fff;
+}
+
+.btn--danger:hover:not(:disabled) {
+  background: #a8242f;
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+
+.btn--ghost:hover:not(:disabled) {
+  background: var(--bg);
+}
+
+.btn--small {
+  padding: 5px 12px;
+  font-size: 0.75em;
+}
+
+/* ================================================================
+   STATUS BADGES — ACTIVE / RECALLED / VERIFIED / PENDING
+   ================================================================ */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 3px;
+  font-size: 0.7em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge--active {
+  background: var(--success-bg);
+  color: var(--success);
+  border: 1px solid var(--success-border);
+}
+
+.badge--recalled {
+  background: var(--danger-bg);
+  color: var(--danger);
+  border: 1px solid var(--danger-border);
+}
+
+.badge--verified {
+  background: var(--info-bg);
+  color: var(--info);
+  border: 1px solid var(--info-border);
+}
+
+.badge--pending {
+  background: var(--muted-bg);
+  color: var(--muted);
+  border: 1px solid var(--muted-border);
+}
+
+/* ================================================================
+   STATUS MESSAGES
+   ================================================================ */
+
+.status {
+  margin-top: 10px;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 0.8em;
+  font-weight: 500;
+  border-left: 3px solid transparent;
+}
+
+.status--success {
+  background: var(--success-bg);
+  color: var(--success);
+  border-left-color: var(--success);
+}
+
+.status--error {
+  background: var(--danger-bg);
+  color: var(--danger);
+  border-left-color: var(--danger);
+}
+
+/* ================================================================
+   VERIFICATION RESULTS — Structured grid
+   ================================================================ */
+
+.verify-result {
+  margin-top: 16px;
+}
+
+.verify-result__status-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.recall-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.78em;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.recall-badge--safe {
+  background: var(--success-bg);
+  color: var(--success);
+  border: 1px solid var(--success-border);
+}
+
+.recall-badge--recalled {
+  background: var(--danger-bg);
+  color: var(--danger);
+  border: 1px solid var(--danger-border);
+}
+
+/* — Detail grid — */
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.detail-grid__item {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.detail-grid__item:nth-child(odd) {
+  border-right: 1px solid var(--border-light);
+}
+
+.detail-grid__item--full {
+  grid-column: 1 / -1;
+  border-right: none;
+}
+
+.detail-grid__label {
+  display: block;
+  font-size: 0.68em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--text-muted);
+  margin-bottom: 2px;
+}
+
+.detail-grid__value {
+  font-size: 0.82em;
+  color: var(--text-primary);
+  word-break: break-all;
+  font-family: "SF Mono", "Cascadia Code", "Courier New", monospace;
+  font-weight: 500;
+}
+
+.detail-grid__value--text {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+}
+
+/* — Legacy detail table (keep for fallback) — */
+
+.detail-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+}
+
+.detail-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border-light);
+  font-size: 0.82em;
+}
+
+.detail-table__label {
+  font-weight: 600;
+  color: var(--text-muted);
+  width: 140px;
+  font-size: 0.75em;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.detail-table__value {
+  color: var(--text-primary);
+  word-break: break-all;
+}
+
+/* ================================================================
+   CUSTODY CHAIN — Vertical timeline
+   ================================================================ */
+
+.custody-section__heading {
+  font-size: 0.78em;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border-light);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.custody-timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+.custody-timeline::before {
+  content: '';
+  position: absolute;
+  left: 13px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: var(--border);
+}
+
+.custody-timeline__entry {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 6px 0;
+  position: relative;
+  font-size: 0.82em;
+}
+
+.custody-timeline__marker {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--teal);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65em;
+  font-weight: 700;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  border: 2px solid var(--surface);
+  box-shadow: 0 0 0 2px var(--teal-muted);
+}
+
+.custody-timeline__marker--first {
+  background: var(--navy);
+  box-shadow: 0 0 0 2px #d6dbe3;
+}
+
+.custody-timeline__content {
+  padding-top: 3px;
+  min-width: 0;
+}
+
+.custody-timeline__label {
+  font-size: 0.72em;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.custody-timeline__addr {
+  font-family: "SF Mono", "Cascadia Code", "Courier New", monospace;
+  font-size: 0.92em;
+  color: var(--text-primary);
+  word-break: break-all;
+}
+
+.custody-timeline__role {
+  font-size: 0.78em;
+  color: var(--text-muted);
+}
+
+/* ================================================================
+   EVENT LOG TABLE
+   ================================================================ */
+
+.events-table-wrapper {
+  overflow-x: auto;
+}
+
+.events-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.78em;
+}
+
+.events-table th {
+  background: var(--bg);
+  padding: 8px 10px;
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-size: 0.72em;
+  letter-spacing: 0.4px;
+  border-bottom: 1px solid var(--border);
+}
+
+.events-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border-light);
+  vertical-align: middle;
+}
+
+.events-table tbody tr:hover {
+  background: rgba(42,127,143,0.03);
+}
+
+.events-table__row--recalled {
+  background: var(--danger-bg) !important;
+}
+
+.event-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-weight: 600;
+  font-size: 0.78em;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.event-badge--registered {
+  background: var(--teal-muted);
+  color: var(--teal);
+}
+
+.event-badge--transferred {
+  background: var(--info-bg);
+  color: var(--info);
+}
+
+.event-badge--recalled {
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+
+/* ================================================================
+   UTILITIES
+   ================================================================ */
+
+.mono {
+  font-family: "SF Mono", "Cascadia Code", "Courier New", monospace;
+  font-size: 0.88em;
+}
+
+.loading {
+  color: var(--text-muted);
+  font-size: 0.82em;
+  padding: 16px 0;
+}
+
+.section-rule {
+  border: none;
+  border-top: 1px solid var(--border-light);
+  margin: 12px 0;
+}
+
+/* ================================================================
+   FOOTER — Minimal, institutional
+   ================================================================ */
+
+.app-footer {
+  text-align: center;
+  padding: 16px 20px;
+  color: var(--text-muted);
+  font-size: 0.7em;
+  border-top: 1px solid var(--border);
+  margin-top: 32px;
+  letter-spacing: 0.2px;
+}
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+
+@media screen and (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    gap: 8px;
+    height: auto;
+    padding: 10px 16px;
+  }
+
+  .nav__links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .system-header {
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-start;
+  }
+
+  .main-content {
+    padding: 0 12px;
+  }
+
+  .panel__body {
+    padding: 14px 14px 16px;
+  }
+
+  .form__row {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-grid__item:nth-child(odd) {
+    border-right: none;
+  }
+
+  .custody-timeline__entry {
+    font-size: 0.78em;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .nav__brand {
+    flex-direction: column;
+    gap: 2px;
+    align-items: center;
+  }
+
+  .nav__brand .nav__divider {
+    display: none;
+  }
+}
