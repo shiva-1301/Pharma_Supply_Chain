@@ -49,7 +49,10 @@ Blockchain technology is uniquely suited to this problem because:
 | **Blockchain Interaction** | Ethers.js | v5.7 |
 | **Testing** | Chai + Hardhat Toolbox | ^2.0.0 |
 | **Wallet** | MetaMask | Browser Extension |
+| **Version Control** | Git + GitHub | — |
 | **Package Manager** | npm | — |
+
+**Source Code Repository:** [https://github.com/shiva-1301/Pharma_Supply_Chain](https://github.com/shiva-1301/Pharma_Supply_Chain)
 
 ---
 
@@ -160,13 +163,57 @@ At any point:
 
 The React frontend provides five operational panels:
 
-1. **Verify Batch** — Public lookup by lot number; displays owner, manufacturer, recall status, metadata hash, and full custody chain
-2. **Register Batch** — Form for manufacturer to register new batch with drug name, NDC, expiry, and manufacturing site
-3. **Transfer Custody** — Form for current owner to transfer batch to a new address
-4. **Recall Batch** — Manufacturer-only panel to permanently flag a batch as recalled
-5. **Event Log** — Real-time audit trail derived from on-chain `BatchRegistered`, `BatchTransferred`, and `BatchRecalled` events
+1. **Verify Batch** (⊘) — Public lookup by lot number; displays batch details in a structured 2-column grid and custody chain in a vertical timeline format
+2. **Register Batch** (＋) — Two-column form for manufacturer to register new batch with drug name, NDC, expiry, and manufacturing site
+3. **Transfer Custody** (⇄) — Two-column form for current owner to transfer batch to a new address
+4. **Recall Batch** (⚑) — Manufacturer-only panel with danger styling to permanently flag a batch as recalled
+5. **Event Log** (☰) — Real-time audit trail derived from on-chain `BatchRegistered`, `BatchTransferred`, and `BatchRecalled` events
 
 All interactions use Ethers.js to communicate with the Hardhat local node. MetaMask wallet connection enables role-based transaction signing.
+
+### 7.1 UI/UX Design Philosophy
+
+The interface follows an **institutional, regulatory-grade** design language — modeled after FDA dashboards and enterprise infrastructure tools rather than consumer Web3 products. Key design principles:
+
+- **No hero sections or marketing language** — replaced with a compact system header showing system name, network status indicator (green dot), and connected wallet address
+- **Card-based panel layout** — each panel has a gray `panel__header` bar (with icon + title) and a clean white `panel__body`
+- **Structured forms** — two-column grid layout on desktop, required-field indicators (`*`), subtle divider lines, compact spacing
+- **Vertical timeline** for custody chain — numbered circle markers connected by a vertical line, showing step labels and addresses
+- **Detail grid** for verification results — 2-column bordered grid displaying Batch ID, Recall Status, Manufacturer, Current Owner, and Metadata Hash
+- **No animations** except functional state transitions
+
+### 7.2 Color Palette
+
+| Token | Hex Code | Usage |
+|---|---|---|
+| `--navy` | `#1b2a4a` | Navigation bar, primary text, secondary buttons |
+| `--navy-dark` | `#0f1b33` | Hover states |
+| `--teal` | `#2a7f8f` | Accent color, active tabs, form focus rings, primary buttons |
+| `--teal-muted` | `#e8f4f6` | Light teal backgrounds |
+| `--bg` | `#f4f6f8` | Page background (neutral gray) |
+| `--surface` | `#ffffff` | Card/panel backgrounds |
+| `--border` | `#dce1e8` | Panel borders, dividers |
+| `--success` | `#1a7a42` | Active badge, success messages |
+| `--danger` | `#c5303e` | Recalled badge, recall panel, errors |
+| `--info` | `#2563a8` | Verified badge |
+| `--muted` | `#6b7280` | Pending badge, muted text |
+
+### 7.3 Typography
+
+- **Font family:** Inter (Google Fonts), with system sans-serif fallback
+- **Base size:** 14px
+- **Weight scale:** 400 (body), 500 (values), 600 (labels, headings), 700 (emphasis)
+- **Monospace:** SF Mono → Cascadia Code → Courier New (for wallet addresses, hashes, batch IDs)
+- **Label style:** 0.72em, uppercase, 600 weight, 0.4px letter-spacing
+
+### 7.4 Status Badges
+
+| Badge | Background | Border | Text Color | Usage |
+|---|---|---|---|---|
+| **ACTIVE** | `#eaf7ef` | `#b7e4c7` | `#1a7a42` | Batch not recalled |
+| **RECALLED** | `#fdf0f1` | `#f5c6cb` | `#c5303e` | Batch has been recalled |
+| **VERIFIED** | `#edf3fb` | `#b9d2f0` | `#2563a8` | On-chain verification confirmed |
+| **PENDING** | `#f3f4f6` | `#d1d5db` | `#6b7280` | Awaiting action |
 
 ---
 
@@ -309,6 +356,9 @@ The recall mechanism is a critical safety feature in pharmaceutical supply chain
 - **Oracle integration** for temperature/humidity IoT data from cold-chain logistics
 - **ERC-1155 or soul-bound token** integration for batch certificates
 - **Layer 2 rollup deployment** (Optimism/Arbitrum) for production-grade throughput
+- **IPFS/Arweave integration** for decentralized off-chain metadata storage
+- **Role-based access control (RBAC)** with on-chain role registry and KYC verification
+- **Batch expiry monitoring** with automated alerts via oracle-triggered events
 
 ---
 
@@ -373,7 +423,22 @@ npm run start
 
 ---
 
-## 17. Conclusion
+## 17. Build & Deployment Status
+
+| Item | Status |
+|---|---|
+| Solidity compilation | Compiled successfully (Solidity ^0.8.17) |
+| Smart contract tests | **26/26 passing** |
+| React production build | **Compiled successfully** (0 warnings) |
+| Contract deployment (localhost) | Deployed at `0x5FbDB2315678afecb367f032d93F642f64180aa3` |
+| Demo data seeded | 3 batches (Amoxicillin, Metformin, Paracetamol) |
+| Git repository | [github.com/shiva-1301/Pharma_Supply_Chain](https://github.com/shiva-1301/Pharma_Supply_Chain) |
+| Branch | `main` |
+| Total files | 33 |
+
+---
+
+## 18. Conclusion
 
 This prototype demonstrates a minimal but architecturally sound application of blockchain technology to pharmaceutical supply chain traceability. By replacing centralized databases with a shared, immutable ledger, the system provides:
 
@@ -381,9 +446,12 @@ This prototype demonstrates a minimal but architecturally sound application of b
 - **Multi-party trust** without a central authority
 - **Real-time recall propagation** across the entire supply chain
 - **Public verifiability** for regulators, pharmacies, and consumers
+- **Institutional-grade UI** designed for regulatory and enterprise environments
 
-The system is designed as a research-grade prototype and deliberately avoids NFT/marketplace patterns, focusing instead on the core supply-chain primitives of registration, custody transfer, recall, and verification.
+The system is designed as a research-grade prototype and deliberately avoids NFT/marketplace patterns, focusing instead on the core supply-chain primitives of registration, custody transfer, recall, and verification. The UI follows a clinical, regulatory-grade design language consistent with FDA dashboards and enterprise infrastructure tools.
 
 ---
+
+**Source Code:** [https://github.com/shiva-1301/Pharma_Supply_Chain](https://github.com/shiva-1301/Pharma_Supply_Chain)
 
 *Report generated for PharmaBatchTracker — Blockchain-Based Pharmaceutical Batch Traceability & Recall System*
